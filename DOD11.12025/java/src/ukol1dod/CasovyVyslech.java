@@ -11,15 +11,19 @@ public class CasovyVyslech {
 
     public void proved() {
         for (int svedek = 1; svedek <= 5; svedek++) {
+            String prompt;
             if (svedek == 1) {
+                prompt = "Číslo 1, mezi kolika hodinami se stal zločin? Zadej hodinu a minutu: ";
                 System.out.println("Číslo 1, mezi kolika hodinami se stal zločin? Zadej hodinu a minutu.");
             } else if (svedek == 2) {
+                prompt = "Můžete poslat 2\nDvojko, mezi jakými časy se stal čin? ";
                 System.out.printf("Můžete poslat 2%nDvojko, mezi jakými časy se stal čin?%n");
             } else {
+                prompt = "Číslo " + svedek + ", stejná otázka: ";
                 System.out.printf("Číslo %d, stejná otázka.%n", svedek);
             }
 
-            double cas = sc.nextDouble();
+            double cas = InputHelper.nextDouble(sc, prompt);
             if (svedek == 1) {
                 System.out.println("1: Myslím si, že se zločin stal " + cas);
             } else if (svedek == 2) {

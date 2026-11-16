@@ -12,24 +12,23 @@ public class VyslechSvedka {
     public int proved() {
         int svedek;
         do {
-            System.out.print("Vyber svědka (1–5), který půjde na výslech: ");
-            svedek = sc.nextInt();
+            svedek = InputHelper.nextInt(sc, "Vyber svědka (1–5), který půjde na výslech: ");
             if (svedek < 1 || svedek > 5) {
                 System.out.println("Takový svědek neexistuje.");
             }
         } while (svedek < 1 || svedek > 5);
 
         System.out.printf("Svědek číslo %d, chtěl bych vám položit otázku ohledně podezřelého.%nJaké měl pachatel vlasy: tmavé, světlé, zrzavé?%n", svedek);
-        int pravdiveOdpovedi = sc.next().equalsIgnoreCase("světlé") ? 1 : 0;
+        int pravdiveOdpovedi = InputHelper.normalizeText(InputHelper.nextText(sc, "")).equals("svetle") ? 1 : 0;
 
         System.out.println("Měl pachatel brýle? ano/ne");
-        if (sc.next().equalsIgnoreCase("ano")) {
+        if (InputHelper.normalizeText(InputHelper.nextText(sc, "")).equals("ano")) {
             pravdiveOdpovedi++;
         }
 
         System.out.println("Jakou měl barvu očí: modrá, zelená, růžová?");
-        String barvaOci = sc.next();
-        if (barvaOci.equalsIgnoreCase("modrá") || barvaOci.equalsIgnoreCase("modra")) {
+        String barvaOci = InputHelper.normalizeText(InputHelper.nextText(sc, ""));
+        if (barvaOci.equals("modra")) {
             pravdiveOdpovedi++;
         }
 
@@ -49,21 +48,18 @@ public class VyslechSvedka {
         }
 
         System.out.printf("Číslo %d, co to máš v kapse?%n%d: Niccc.%nTo je ukradený kámen, má barvu:%nD: červený, modrý, zelený, jiný%n", svedek, svedek);
-        switch (sc.next().toLowerCase()) {
+        String barvaKamene = InputHelper.normalizeText(InputHelper.nextText(sc, ""));
+        switch (barvaKamene) {
             case "cerveny":
-            case "červený":
                 System.out.println("To je rubín.");
                 break;
             case "modry":
-            case "modrý":
                 System.out.println("To je safír.");
                 break;
             case "zeleny":
-            case "zelený":
                 System.out.println("To je smaragd.");
                 break;
             case "jiny":
-            case "jiný":
                 System.out.println("Co to je, že by nukleární kámen?");
                 break;
             default:
